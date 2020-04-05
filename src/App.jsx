@@ -4,11 +4,17 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, {createGlobalStyle} from 'styled-components';
 
 import {Header} from './components/header';
 import {Home} from './routes/Home';
 import {GlobalContextProvider, useGlobalState} from './context/global';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+  }
+`;
 
 const AppStyled = styled.div`
   width: 100vw;
@@ -32,6 +38,7 @@ const Application = () => {
 
   return (
     <AppStyled>
+      <GlobalStyle />
       <Header />
       <Switch>
         <Route path="/" exact component={Home} />

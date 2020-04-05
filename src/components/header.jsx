@@ -6,7 +6,6 @@ import {useGlobalState} from '../context/global';
 
 const HeaderStyled = styled.header`
   height: 72px;
-  width: 100vw;
 
   display: flex;
   align-items: center;
@@ -34,7 +33,7 @@ export const Header = () => {
         onChange={(e) => {
           dispatch({
             type: 'changeFavoriteCharacter',
-            value: e.target.value,
+            payload: e.target.value,
           });
         }}
       >
