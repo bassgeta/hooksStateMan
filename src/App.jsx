@@ -1,10 +1,22 @@
-import React from 'react'
+import React from 'react';
 import {
   BrowserRouter as Router,
+  Route,
   Switch,
-} from 'react-router-dom'
+} from 'react-router-dom';
+import styled from 'styled-components';
 
-import {GlobalContextProvider, useGlobalState} from './context/global'
+import {Header} from './components/header';
+import {Home} from './routes/Home';
+import {GlobalContextProvider, useGlobalState} from './context/global';
+
+const AppStyled = styled.div`
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+`;
 
 export const App = () => (
   <Router>
@@ -12,14 +24,19 @@ export const App = () => (
       <Application />
     </GlobalContextProvider>
   </Router>
-)
+);
 
 const Application = () => {
-  const {state, dispatch} = useGlobalState()
-  console.log("state", state)
+  const {state, dispatch} = useGlobalState();
+  console.log('state', state);
 
   return (
-    <div> Test! </div>
-  )
-}
+    <AppStyled>
+      <Header />
+      <Switch>
+        <Route path="/" exact component={Home} />
+      </Switch>
+    </AppStyled>
+  );
+};
 

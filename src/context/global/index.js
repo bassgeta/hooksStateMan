@@ -1,6 +1,6 @@
 import React from 'react';
 import {initialState, reducer} from './reducer';
-import {useStore} from '../hooks/useStore';
+import {useStore} from '../../hooks/useStore';
 
 export const GlobalContext = React.createContext({});
 
@@ -14,5 +14,5 @@ export const GlobalContextProvider = ({children}) => {
   );
 };
 
-export const useGlobalState = () => useContext(GlobalContext);
+export const useGlobalState = () => React.useContext(GlobalContext);
 
