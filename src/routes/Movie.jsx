@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom';
 import styled from 'styled-components';
 
 import {Loader} from '../components/loader';
+import {useGlobalState} from '../context/global';
 import {withContext} from '../components/withContext';
 import {MovieContextProvider, useMovieState} from '../context/movie';
 import {useMovieActions} from '../context/movie/useMovieActions';
@@ -12,7 +13,7 @@ const MovieStyled = styled.div`
   flex-direction: column;
   align-items: center;
   flex: 1;
-  width: 100%;
+  overflow-y: auto;
   background-color: #cca57d;
 
   .title {
@@ -39,6 +40,7 @@ const QuoteStyled = styled.li`
 const MovieView = () => {
   const {id} = useParams();
   const {fetchMovieData} = useMovieActions();
+  const {state: {favoriteCharacter}} = useGlobalState();
   const {
     state: {loading, movie, quotes},
   } = useMovieState();
@@ -47,16 +49,23 @@ const MovieView = () => {
     fetchMovieData(id);
   }, []);
 
+  let quotesToRender = quotes;
+  if (favoriteCharacter) {
+    quotesToRender = quotes.filter(
+        ({dialog}) => dialog.includes(favoriteCharacter),
+    );
+  }
+
   return (
     <MovieStyled>
+      <div className="title">{movie.name || 'Loading'}</div>
       {
       loading ? <Loader /> :
       (
       <React.Fragment>
-        <div className="title">{movie.name}</div>
         <QuoteListStyled>
           {
-            quotes.slice(0, 20).map((quote) => (
+            quotesToRender.slice(0, 20).map((quote) => (
               <QuoteStyled key={quote._id}>
                 {quote.dialog}
               </QuoteStyled>
