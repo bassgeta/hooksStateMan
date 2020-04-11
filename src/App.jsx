@@ -7,6 +7,7 @@ import {
 import styled, {createGlobalStyle} from 'styled-components';
 
 import {Header} from './components/header';
+import {withContext} from './components/withContext';
 import {Home} from './routes/Home';
 import {Movies} from './routes/Movies';
 import {GlobalContextProvider} from './context/global';
@@ -25,24 +26,20 @@ const AppStyled = styled.div`
   flex-direction: column;
 `;
 
-export const App = () => (
-  <Router>
-    <GlobalContextProvider>
-      <Application />
-    </GlobalContextProvider>
-  </Router>
-);
-
 const Application = () => {
   return (
-    <AppStyled>
-      <GlobalStyle />
-      <Header />
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/movies" component={Movies} />
-      </Switch>
-    </AppStyled>
+    <Router>
+      <AppStyled>
+        <GlobalStyle />
+        <Header />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/movies" component={Movies} />
+        </Switch>
+      </AppStyled>
+    </Router>
   );
 };
+
+export const App = withContext(GlobalContextProvider)(Application);
 

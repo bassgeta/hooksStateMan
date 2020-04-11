@@ -7,6 +7,7 @@ import {
   SET_MOVIES_ERROR,
 } from '../context/movies/actionTypes';
 
+import {withContext} from '../components/withContext';
 import {Loader} from '../components/loader';
 
 const MoviesStyled = styled.div`
@@ -96,9 +97,5 @@ const MoviesView = () => {
   );
 };
 
-export const Movies = () => (
-  <MoviesContextProvider>
-    <MoviesView />
-  </MoviesContextProvider>
-);
+export const Movies = withContext(MoviesContextProvider)(MoviesView);
 
