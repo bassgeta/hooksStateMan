@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {MoviesContextProvider, useMoviesState} from '../context/movies';
+import {useMoviesActions} from '../context/movies/useMoviesActions';
 import {
   SET_MOVIES_LOADING,
   SET_MOVIES_LIST,
@@ -52,28 +53,9 @@ const MoviesView = () => {
       loading, movies,
     },
   } = useMoviesState();
+  const {fetchMovies} = useMoviesActions();
 
   React.useEffect(() => {
-    async function fetchMovies() {
-      dispatch({type: SET_MOVIES_LOADING, payload: true});
-      try {
-        const response = await fetch(
-            `${url}/movie`,
-            {
-              method: 'GET',
-              headers: {
-                Authorization: `Bearer ${apiKey}`,
-              },
-            },
-        );
-        const json = await response.json();
-        dispatch({type: SET_MOVIES_LIST, payload: json.docs});
-      } catch (err) {
-        console.error('Error while fetching movies', err);
-        dispatch({type: SET_MOVIES_ERROR, paylod: err});
-      }
-    }
-
     fetchMovies();
   }, []);
 
