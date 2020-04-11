@@ -5,7 +5,7 @@ import {useStore} from '../../hooks/useStore';
 export const MoviesContext = React.createContext({});
 
 export const MoviesContextProvider = ({children}) => {
-  const store = useStore({reducer, initialState, windowName: 'movieState'});
+  const store = useStore({reducer, initialState, windowName: 'moviesState'});
 
   return (
     <MoviesContext.Provider value={store}>
