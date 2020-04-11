@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
+
 import {MoviesContextProvider, useMoviesState} from '../context/movies';
 import {useMoviesActions} from '../context/movies/useMoviesActions';
 import {
@@ -41,14 +43,15 @@ const MovieStyled = styled.li`
   :hover {
     background-color: #96705f;
   }
-`;
 
-const apiKey = process.env.API_KEY;
-const url = 'https://the-one-api.herokuapp.com/v1';
+  .link {
+    text-decoration: none;
+    color: inherit;
+  }
+`;
 
 const MoviesView = () => {
   const {
-    dispatch,
     state: {
       loading, movies,
     },
@@ -69,7 +72,11 @@ const MoviesView = () => {
       <MoviesListStyled>
         {
           movies.map((movie) => (
-            <MovieStyled key={movie._id}>{movie.name}</MovieStyled>
+            <MovieStyled key={movie._id}>
+              <Link className="link" to={`/movies/${movie._id}`}>
+                {movie.name}
+              </Link>
+            </MovieStyled>
           ))
         }
       </MoviesListStyled>

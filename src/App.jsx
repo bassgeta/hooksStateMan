@@ -10,6 +10,7 @@ import {Header} from './components/header';
 import {withContext} from './components/withContext';
 import {Home} from './routes/Home';
 import {Movies} from './routes/Movies';
+import {Movie} from './routes/Movie';
 import {GlobalContextProvider} from './context/global';
 
 const GlobalStyle = createGlobalStyle`
@@ -34,7 +35,8 @@ const Application = () => {
         <Header />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/movies" component={Movies} />
+          <Route path="/movies" component={Movies} exact />
+          <Route path="/movies/:id" component={Movie} />
         </Switch>
       </AppStyled>
     </Router>
