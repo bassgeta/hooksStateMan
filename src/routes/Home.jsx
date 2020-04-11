@@ -24,3 +24,4 @@ export const Home = () => (
     <div className="subtitle">Speak friend and enter</div>
   </HomeStyled>
 );
+

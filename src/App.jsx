@@ -8,7 +8,8 @@ import styled, {createGlobalStyle} from 'styled-components';
 
 import {Header} from './components/header';
 import {Home} from './routes/Home';
-import {GlobalContextProvider, useGlobalState} from './context/global';
+import {Movies} from './routes/Movies';
+import {GlobalContextProvider} from './context/global';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -33,15 +34,13 @@ export const App = () => (
 );
 
 const Application = () => {
-  const {state, dispatch} = useGlobalState();
-  console.log('state', state);
-
   return (
     <AppStyled>
       <GlobalStyle />
       <Header />
       <Switch>
         <Route path="/" exact component={Home} />
+        <Route path="/movies" component={Movies} />
       </Switch>
     </AppStyled>
   );
