@@ -11,6 +11,7 @@ export const initialState = {
     'Gandalf',
     'Legolas',
     'Gimli',
+    'Sauron',
   ],
 };
 
