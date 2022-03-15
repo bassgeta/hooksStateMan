@@ -6,7 +6,7 @@
   "homepage": "https://kerrymahne.github.io/hooksStateMan/",
   "scripts": {
     "start": "parcel index.html && parcel watch index.html",
-    "build": "parcel build index.html",
+    "build": "parcel build index.html --public-url ./",
     "test": "echo \"Error: no test specified\" && exit 1",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
@@ -20,7 +20,6 @@
   "bugs": {
     "url": "https://github.com/KerryMahne/hooksStateMan/issues"
   },
-  "homepage": "https://github.com/KerryMahne/hooksStateMan#readme",
   "dependencies": {
     "parcel": "^1.12.4",
     "react": "^16.13.1",

@@ -29,7 +29,7 @@ const AppStyled = styled.div`
 
 const Application = () => {
   return (
-    <Router>
+    <Router basename="/hooksStateMan">
       <AppStyled>
         <GlobalStyle />
         <Header />
