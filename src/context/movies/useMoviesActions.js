@@ -6,7 +6,7 @@ import {
 } from './actionTypes';
 
 const apiKey = process.env.API_KEY;
-const url = 'https://the-one-api.herokuapp.com/v1';
+const url = 'https://the-one-api.dev/v2';
 
 export function useMoviesActions() {
   const {dispatch} = useMoviesState();

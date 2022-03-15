@@ -6,7 +6,7 @@ import {
 } from './actionTypes';
 
 const apiKey = process.env.API_KEY;
-const url = 'https://the-one-api.herokuapp.com/v1';
+const url = 'https://the-one-api.dev/v2';
 
 export function useMovieActions() {
   const {dispatch} = useMovieState();
@@ -25,6 +25,7 @@ export function useMovieActions() {
             },
         );
         const movie= await movieResponse.json();
+        console.log('muvi', movie, movie.docs[0]);
 
         const quoteResponse = await fetch(
             `${url}/movie/${id}/quote`,
@@ -36,10 +37,11 @@ export function useMovieActions() {
             },
         );
         const quotesJson = await quoteResponse.json();
+        console.log('ma kaki quoti', quotesJson)
 
         dispatch({
           type: SET_MOVIE_DATA,
-          payload: {movie, quotes: quotesJson.docs},
+          payload: {movie: movie.docs[0], quotes: quotesJson.docs},
         });
       } catch (err) {
         console.error('Error while fetching movies', err);
